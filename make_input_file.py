@@ -4,6 +4,7 @@
 
 import argparse
 import os
+import subprocess
 
 # user inputs the observation file information
 parser = argparse.ArgumentParser()

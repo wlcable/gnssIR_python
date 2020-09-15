@@ -105,7 +105,7 @@ def read_one_snr(obsfile,ifile):
 #
 
     snrE = np.array([False, True, True,False,False,True,True,True,True],dtype = bool)
-    f = np.genfromtxt(obsfile,comments='%')
+    f = np.loadtxt(obsfile,comments='%') #changed to loadtxt because it is more memmory efficient
     print('reading from this snr file ',obsfile)
     r,c = f.shape
     print('Number of rows:', r, ' Number of columns:',c)
@@ -131,13 +131,15 @@ def read_one_snr(obsfile,ifile):
 #   this is sometimes all zeros
     edot =  f[:,4]
     s1 = f[:,6]
-    s2 = f[:,7]
+#   make s2 optional
+    if c > 7:
+        s2 = f[:,7]
+        s2 = np.power(10,(s2/20))
 #   typically there is a zero in this row, but older files may have something
 #   something that should not be used 
     s6 = f[:,5]
 
-    s1 = np.power(10,(s1/20))  
-    s2 = np.power(10,(s2/20))  
+    s1 = np.power(10,(s1/20))   
 #
     s6 = s6/20
     s6 = np.power(10,s6)  

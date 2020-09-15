@@ -21,13 +21,17 @@ def read_snr_simple(obsfile):
 #   
     allGood = 1
     try:
-        f = np.genfromtxt(obsfile,comments='%')
+        f = np.loadtxt(obsfile,comments='%') #changed to loadtxt because it is more memmory efficient
         r,c = f.shape
         print('read_snr_simple, Number of rows:', r, ' Number of columns:',c)
         sat = f[:,0]; ele = f[:,1]; azi = f[:,2]; t =  f[:,3]
-        edot =  f[:,4]; s1 = f[:,6]; s2 = f[:,7]; s6 = f[:,5]
-        s1 = np.power(10,(s1/20))  
-        s2 = np.power(10,(s2/20))  
+        edot =  f[:,4]; s1 = f[:,6]; s6 = f[:,5]
+        s1 = np.power(10,(s1/20))
+#   make s2 optional
+        if c > 7:
+            s2 = f[:,7]
+            s2 = np.power(10,(s2/20))
+            
         s6 = s6/20; s6 = np.power(10,s6)  
 #   make sure s5 has default value?
         s5 = []
