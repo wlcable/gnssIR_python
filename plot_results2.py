@@ -114,10 +114,10 @@ plt.title('GNSS station: {}:{} Azimuth: {:d}° to {:d}°'.format(station, extens
 plt.gca().invert_yaxis()
 plt.grid()
 plt.legend(legend_txt, title=' sat,  az', bbox_to_anchor=(1.0, 1.0), loc=2)
-if show:
-    plt.show()
-
 # save the plot to a png file
 pltname = '{}/{}-{}_RH_{:d}-{:d}_{:03.0f}-{:03.0f}_{}.png'.format(txtdir, station, extension, year1, year2, az_range[0], az_range[1], datetime.now().strftime("%Y%m%d%H%M%S"))
 plt.savefig(pltname)
 print('Saved figure to: ' + pltname)
+if show:
+    plt.show()
+
