@@ -93,6 +93,11 @@ hrs = dat.time % 24         #just the hours, makes sure hours are 0-24
 dat.doy = dat.doy + (dat.time-hrs)/24     #add these extra days to doy, adjusts for overrun in hours
 dat.time = hrs
 t1 = pd.to_datetime(dat.year*10000+101,format='%Y%m%d') + pd.to_timedelta(dat.doy-1,'d') + pd.to_timedelta(dat.time,'h')
+dat.insert(0, 'datetime', t1)
+del t1, hrs #cleaning up
+
+#sort based on datetime
+dat.sort_values('datetime')
 
 #find all the satellites
 satellites = dat.sat.unique()
