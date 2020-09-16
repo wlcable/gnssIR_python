@@ -112,7 +112,7 @@ for sat in satellites:
     az = dat.Az[id].mean()
     if az_range[0] <= az < az_range[1]:    #check if it is in range
         legend_txt.append('{:3d}, {:3.0f}°'.format(sat,az))
-        plt.plot(t1[id],dat.RH[id],marker='.')
+        plt.plot(dat.datetime[id],dat.RH[id],marker='.')
 
 plt.ylabel('Reflector Height (m)')
 plt.title('GNSS station: {}:{} Azimuth: {:d}° to {:d}°'.format(station, extension, az_range[0], az_range[1]))
