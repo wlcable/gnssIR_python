@@ -97,7 +97,7 @@ dat.insert(0, 'datetime', t1)
 del t1, hrs #cleaning up
 
 #sort based on datetime
-dat.sort_values('datetime')
+dat.sort_values('datetime', inplace=True)
 
 #find all the satellites
 satellites = dat.sat.unique()
